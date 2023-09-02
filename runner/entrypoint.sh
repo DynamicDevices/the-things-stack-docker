@@ -29,6 +29,10 @@ replace_placeholders() {
     sed -i -e "s/{{pb_oauth_id}}/${PB_OAUTH_ID}/g" $FILE
     sed -i -e "s/{{pb_oauth_secret}}/${PB_OAUTH_SECRET}/g" $FILE
     sed -i -e "s/{{pb_token}}/${PB_TOKEN}/g" $FILE
+    sed -i -e "s|{{console_root}}|${TTS_CONSOLE_ROOT}|g" $FILE
+    sed -i -e "s|{{oauth_root}}|${TTS_OAUTH_ROOT}|g" $FILE
+    sed -i -e "s|{{api_root}}|${TTS_API_ROOT}|g" $FILE
+    sed -i -e "s|{{claim_root}}|${TTS_CLAIM_ROOT}|g" $FILE
 }
 
 # Delay 5s before starting
@@ -71,6 +75,10 @@ TTS_METRICS_PASSWORD=${TTS_METRICS_PASSWORD:-metrics}
 TTS_PPROF_PASSWORD=${TTS_PPROF_PASSWORD:-pprof}
 TTS_NET_ID=${TTS_NET_ID:-000000}
 TTS_DEVADDR_RANGE=${TTS_DEVADDR_RANGE:-00000000/7}
+TTS_CONSOLE_ROOT=${TTS_CONSOLE_ROOT:-console}
+TTS_OAUTH_ROOT=${TTS_OAUTH_ROOT:-oauth}
+TTS_API_ROOT=${TTS_API_ROOT:-api}
+TTS_CLAIM_ROOT=${TTS_CLAIM_ROOT:-claim}
 
 PB_HOME_ENABLE=${PB_HOME_ENABLE:-false}
 PB_FORWARDER_ENABLE=${PB_FORWARDER_ENABLE:-false}
@@ -136,7 +144,7 @@ then
     TC_TRUST=${TC_TRUST//$'\n'/}
     balena_set_variable "TC_TRUST" "$TC_TRUST"
     balena_set_variable "TC_URI" "wss://localhost:8887"
-    balena_set_label "URL" "https://$TTS_DOMAIN"
+    balena_set_label "URL" "https://$TTS_DOMAIN/$TTS_CONSOLE_ROOT"
 fi
 
 # Database migration & initialization
@@ -166,10 +174,10 @@ if [ $? -eq 0 ]; then
             --name "Console" \
             --owner admin \
             --secret "${TTS_CONSOLE_SECRET}" \
-            --redirect-uri "https://${TTS_DOMAIN}/console/oauth/callback" \
-            --redirect-uri "/console/oauth/callback" \
-            --logout-redirect-uri "https://${TTS_DOMAIN}/console" \
-            --logout-redirect-uri "/console"
+            --redirect-uri "https://${TTS_DOMAIN}/${TTS_CONSOLE_ROOT}/oauth/callback" \
+            --redirect-uri "/${TTS_CONSOLE_ROOT}/oauth/callback" \
+            --logout-redirect-uri "https://${TTS_DOMAIN}/${TTS_CONSOLE_ROOT}" \
+            --logout-redirect-uri "/${TTS_CONSOLE_ROOT}"
 
         echo $EXPECTED_SIGNATURE > ${DATA_FOLDER}/database_signature
 

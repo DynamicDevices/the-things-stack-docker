@@ -6,8 +6,8 @@ is:
     sender-address: '{{noreply_email}}'
     network:
       name: '{{server_name}}'
-      console-url: 'https://{{domain}}:{{port}}/console'
-      identity-server-url: 'https://{{domain}}:{{port}}/oauth'
+      console-url: 'https://{{domain}}:{{port}}/{{console_root}}'
+      identity-server-url: 'https://{{domain}}:{{port}}/{{oauth_root}}'
 
     provider: {{mail_provider}}
 
@@ -26,9 +26,9 @@ is:
   # Web UI configuration for "{{domain}}":
   oauth:
     ui:
-      canonical-url: 'https://{{domain}}:{{port}}/oauth'
+      canonical-url: 'https://{{domain}}:{{port}}/{{oauth_root}}'
       is:
-        base-url: 'https://{{domain}}:{{port}}/api/v3'
+        base-url: 'https://{{domain}}:{{port}}/{{api_root}}/v3'
 
 # HTTP server configuration
 http:
@@ -86,30 +86,30 @@ gcs:
 # Web UI configuration for "{{domain}}":
 console:
   ui:
-    canonical-url: 'https://{{domain}}:{{port}}/console'
+    canonical-url: 'https://{{domain}}:{{port}}/{{console_root}}'
     is:
-      base-url: 'https://{{domain}}:{{port}}/api/v3'
+      base-url: 'https://{{domain}}:{{port}}/{{api_root}}/v3'
     gs:
-      base-url: 'https://{{domain}}:{{port}}/api/v3'
+      base-url: 'https://{{domain}}:{{port}}/{{api_root}}/v3'
     gcs:
-      base-url: 'https://{{domain}}:{{port}}/api/v3'
+      base-url: 'https://{{domain}}:{{port}}/{{api_root}}/v3'
     ns:
-      base-url: 'https://{{domain}}:{{port}}/api/v3'
+      base-url: 'https://{{domain}}:{{port}}/{{api_root}}/v3'
     as:
-      base-url: 'https://{{domain}}:{{port}}/api/v3'
+      base-url: 'https://{{domain}}:{{port}}/{{api_root}}/v3'
     js:
-      base-url: 'https://{{domain}}:{{port}}/api/v3'
+      base-url: 'https://{{domain}}:{{port}}/{{api_root}}/v3'
     qrg:
-      base-url: 'https://{{domain}}:{{port}}/api/v3'
+      base-url: 'https://{{domain}}:{{port}}/{{api_root}}/v3'
     edtc:
-      base-url: 'https://{{domain}}:{{port}}/api/v3'
+      base-url: 'https://{{domain}}:{{port}}/{{api_root}}/v3'
     dcs:
-      base-url: 'https://{{domain}}:{{port}}/api/v3'
+      base-url: 'https://{{domain}}:{{port}}/{{api_root}}/v3'
 
   oauth:
-    authorize-url: 'https://{{domain}}:{{port}}/oauth/authorize'
-    token-url: 'https://{{domain}}:{{port}}/oauth/token'
-    logout-url: 'https://{{domain}}:{{port}}/oauth/logout'
+    authorize-url: 'https://{{domain}}:{{port}}/{{oauth_root}}/authorize'
+    token-url: 'https://{{domain}}:{{port}}/{{oauth_root}}/token'
+    logout-url: 'https://{{domain}}:{{port}}/{{oauth_root}}/logout'
     client-id: 'console'
     client-secret: '{{console_secret}}'
 
@@ -120,26 +120,26 @@ as:
     public-tls-address: '{{domain}}:8883'
   webhooks:
     downlink:
-      public-address: '{{domain}}:1885/api/v3'
+      public-address: '{{domain}}:1885/{{api_root}}/v3'
 
 # If Device Claiming Server enabled, defaults for "{{domain}}":
 dcs:
   oauth:
-    authorize-url: 'https://{{domain}}:{{port}}/oauth/authorize'
-    token-url: 'https://{{domain}}:{{port}}/oauth/token'
-    logout-url: 'https://{{domain}}:{{port}}/oauth/logout'
+    authorize-url: 'https://{{domain}}:{{port}}/{{oauth_root}}/authorize'
+    token-url: 'https://{{domain}}:{{port}}/{{oauth_root}}/token'
+    logout-url: 'https://{{domain}}:{{port}}/{{oauth_root}}/logout'
     client-id: 'device-claiming'
     client-secret: '{{device_claiming_secret}}'
   ui:
-    canonical-url: 'https://{{domain}}:{{port}}/claim'
+    canonical-url: 'https://{{domain}}:{{port}}/{{claim_root}}'
     as:
-      base-url: 'https://{{domain}}:{{port}}/api/v3'
+      base-url: 'https://{{domain}}:{{port}}/{{api_root}}/v3'
     dcs:
-      base-url: 'https://{{domain}}:{{port}}/api/v3'
+      base-url: 'https://{{domain}}:{{port}}/{{api_root}}/v3'
     is:
-      base-url: 'https://{{domain}}:{{port}}/api/v3'
+      base-url: 'https://{{domain}}:{{port}}/{{api_root}}/v3'
     ns:
-      base-url: 'https://{{domain}}:{{port}}/api/v3'
+      base-url: 'https://{{domain}}:{{port}}/{{api_root}}/v3'
 
 # Packet Broker Agent configuration
 pba:

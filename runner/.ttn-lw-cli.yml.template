@@ -9,7 +9,7 @@ credentials-id: {{domain}}
 input-format: json
 output-format: json
 allow-unknown-hosts: false
-oauth-server-address: https://{{domain}}/oauth
+oauth-server-address: https://{{domain}}/{{oauth_root}}
 identity-server-grpc-address: {{domain}}:8884
 gateway-server-enabled: true
 gateway-server-grpc-address: {{domain}}:8884
